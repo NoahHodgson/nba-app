@@ -7,12 +7,22 @@ type Props={
 
 const GameComp = async (props: Props)=>{
     const {gameStats} = props
+
+    // replace later
+    const quickMinuteHandler = (min:number) =>{
+        let result = min;
+        if (result === 0){
+            return "00"
+        }
+        return result;
+    }
+
     return(
         <div className="mx-auto my-2 max-w-md rounded overflow-hidden shadow-md text-xs">
             <div className="flex bg-gray-400 px-2 py-2">
                 <div className="w-5/12 text-gray-700 text-left text-red-700">
                     {gameStats.time !== null ? <>{gameStats.time} - {gameStats.period}</> :
-                        <>Starts at {new Date(gameStats.status).getHours()}:{new Date(gameStats.status).getMinutes()}</>
+                        <>Starts at {new Date(gameStats.status).getHours()}:{quickMinuteHandler(new Date(gameStats.status).getMinutes())}</>
                     }
                 </div>
                 <div className="w-1/6 text-gray-700 text-right">{gameStats.date.split('T')[0]}</div>
